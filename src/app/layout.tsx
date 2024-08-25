@@ -4,6 +4,8 @@ import "./globals.css";
 import { Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/toaster";
+import Provider from "@/providers/SessionProvider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -27,9 +29,12 @@ export default function RootLayout({
         fontSans.variable
       )}>
         <main className='h-screen flex flex-col justify-center items-center'>
-          <Navbar />
-          {children}
+          <Provider>
+            <Navbar />
+            {children}
+          </Provider>
         </main>
+        <Toaster />
       </body>
     </html>
   );
